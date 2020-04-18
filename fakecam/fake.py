@@ -4,7 +4,7 @@ import numpy as np
 import requests
 import pyfakewebcam
 
-def get_mask(frame, bodypix_url='http://localhost:9000'):
+def get_mask(frame, bodypix_url='http://192.168.1.99:9000'):
     _, data = cv2.imencode(".jpg", frame)
     r = requests.post(
         url=bodypix_url,
@@ -71,7 +71,7 @@ cap = cv2.VideoCapture('/dev/video2')
 height, width = 480, 640
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-cap.set(cv2.CAP_PROP_FPS, 40)
+cap.set(cv2.CAP_PROP_FPS, 50)
 # setup the fake camera
 fake = pyfakewebcam.FakeWebcam('/dev/video20', width, height)
 # load the virtual background

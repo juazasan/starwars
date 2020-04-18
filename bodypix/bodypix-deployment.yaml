@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bodypix
+spec:
+  selector:
+    matchLabels:
+      app: bodypix
+  template:
+    metadata:
+      labels:
+        app: bodypix # the label for the pods and the deployments
+    spec:
+      containers:
+      - name: bodypix
+        image: juazasancr.azurecr.io/bodypix:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        resources:
+          requests: # minimum resources required
+            cpu: 500m
+            memory: 1Gi
+          limits: # maximum resources allocated
+            cpu: 1000m
+            memory: 2Gi
+      imagePullSecrets:
+      - name: juazasancr
