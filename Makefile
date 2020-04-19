@@ -33,7 +33,7 @@ run-bodypixgpu:
 	--shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 \
 	bodypixgpu
 run-fakecam:
-	bash -c "source fakecam/fakecamvenv/bin/activate && python -u ./fakecam/fake.py"
+	bash -c "source fakecam/fakecamvenv/bin/activate && python -u ./fakecam/fake.py <input_video_filepath"
 run-fakecam-docker:
 	# start the camera, note that we need to pass through video devices,
 	# and we want our user ID and group to have permission to them
@@ -42,7 +42,7 @@ run-fakecam-docker:
 	--name=fakecam \
 	--network=fakecam \
 	-p 8080:8080 \
-	-u 1000:44 --device /dev/video2 --device /dev/video3 --device /dev/video20 \
+	-u $USER --device /dev/video2 --device /dev/video3 --device /dev/video20 \
 	fakecam
 stop:
 	docker stop fakecam

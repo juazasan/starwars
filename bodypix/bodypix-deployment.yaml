@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: bodypix
-        image: juazasancr.azurecr.io/bodypix:v1
+        image: bodypix:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 9000
@@ -24,5 +24,3 @@ spec:
           limits: # maximum resources allocated
             cpu: 1000m
             memory: 2Gi
-      imagePullSecrets:
-      - name: juazasancr

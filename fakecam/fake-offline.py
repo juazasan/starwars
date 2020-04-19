@@ -4,6 +4,8 @@ import numpy as np
 import requests
 import pyfakewebcam
 from moviepy.editor import *
+import sys
+import string
 
 def get_mask(frame, bodypix_url='http://localhost:9000'):
     _, data = cv2.imencode(".jpg", frame)
@@ -68,9 +70,9 @@ def get_newframe(frame, background_scaled):
         frame[:,:,c] = frame[:,:,c]*mask + background_scaled[:,:,c]*inv_mask
     return frame
 # read audio
-input_video_filepath='/home/juazasan/Videos/video_sin_editar.mp4'
-temp_video_filepath='/home/juazasan/Videos/temp_video.mp4'
-output_video_filepath='/home/juazasan/Videos/output_video.mp4'
+input_video_filepath=str(sys.argv[0])
+temp_video_filepath= input_video_filepath.rsplit(".", 1) + "_temp.mp4"
+output_video_filepath= input_video_filepath.rsplit(".", 1) + "_output.mp4"
 input_video = VideoFileClip(input_video_filepath)
 audio = input_video.audio
 
